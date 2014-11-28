@@ -1,0 +1,15 @@
+[
+{
+  "modid": "AncientAddin",
+  "name": "AncientAddin Mod",
+  "description": "Mod used by AncientSpaceShip MCPack",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Yuri6037"],
+  "credits": "Yuri6037 - All rights reserved",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
