@@ -1,5 +1,7 @@
 package net.yuri6037.AncientAddinMod.ingame;
 
+import net.minecraft.client.gui.GuiIngame;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class IngameRendererHookList {
     public static void onRender(){
         for (GuiIngameRenderer render : renderersMap){
             render.renderGameOverlay();
+            render.mc.renderEngine.bindTexture(GuiIngame.icons);
         }
     }
 

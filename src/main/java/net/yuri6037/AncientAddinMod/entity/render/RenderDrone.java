@@ -34,7 +34,7 @@ public class RenderDrone extends Render {
             GL11.glTranslated(x, y, z);
             GL11.glRotatef(entity.rotationYaw, 0, 1, 0);
             GL11.glRotatef(entity.rotationPitch, 0, 0, 1);
-            droneModel.render(entity, 0.0F, 0.0F, 0.0F, (float) (entity.rotationYaw), (float) (entity.rotationPitch), 0.0625F);
+            droneModel.render(entity, 0.0F, 0.0F, 0.0F, (float)entity.rotationYaw, (float)entity.rotationPitch, 0.0625F);
         GL11.glPopMatrix();
     }
 

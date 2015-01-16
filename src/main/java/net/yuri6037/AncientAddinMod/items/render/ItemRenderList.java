@@ -13,5 +13,7 @@ public class ItemRenderList {
 
     static {
         MinecraftForgeClient.registerItemRenderer(ItemList.droneLauncher, new RenderDroneLauncher());
+        MinecraftForgeClient.registerItemRenderer(ItemList.droneRecharge, new RenderDroneRecharge());
+        MinecraftForgeClient.registerItemRenderer(ItemList.rayonThrower, new RenderAncientRayonThrower());
     }
 }

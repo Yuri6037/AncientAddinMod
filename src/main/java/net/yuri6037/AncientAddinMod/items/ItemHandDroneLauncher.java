@@ -1,6 +1,5 @@
 package net.yuri6037.AncientAddinMod.items;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -8,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.yuri6037.AncientAddinMod.AncientAddin;
+import net.yuri6037.AncientAddinMod.entity.AncientsUtil;
 import net.yuri6037.AncientAddinMod.entity.EntityDrone;
 
 /**
@@ -17,7 +18,7 @@ public class ItemHandDroneLauncher extends Item {
 	
     public ItemHandDroneLauncher() {
 		setMaxDamage(129);
-        setCreativeTab(CreativeTabs.tabCombat);
+        setCreativeTab(AncientAddin.ancientAddinTab);
         setUnlocalizedName("droneLauncher");
         setMaxStackSize(1);
 	}
@@ -46,12 +47,24 @@ public class ItemHandDroneLauncher extends Item {
     }
     
 	public ItemStack onItemRightClick(ItemStack itemstack, World world,	EntityPlayer entity) {
+        if (!AncientsUtil.isPlayerAncient(entity)){
+            return itemstack;
+        }
+
         if (itemstack.stackTagCompound == null){
             itemstack.stackTagCompound = new NBTTagCompound();
-            itemstack.stackTagCompound.setInteger("Battery", 64);
+            itemstack.stackTagCompound.setInteger("Battery", 0);
         }
         NBTTagCompound tag = itemstack.stackTagCompound;
         int batery = tag.getInteger("Battery");
+        if (!world.isRemote && !tag.getBoolean("firstShoot") && batery == 0 && entity.inventory.hasItem(ItemList.droneRecharge)) {
+            tag.setBoolean("firstShoot", true);
+            tag.setInteger("shootTime", 128);
+            itemstack.damageItem(128, entity);
+            tag.setInteger("Battery", 2);
+            entity.inventory.consumeInventoryItem(ItemList.droneRecharge);
+            return itemstack;
+        }
 		if (!world.isRemote && !tag.getBoolean("firstShoot") && batery > 0) {
 			Vec3 look = entity.getLookVec();
 			EntityDrone drone = new EntityDrone(world, entity, 1, 1, 1);
@@ -60,9 +73,11 @@ public class ItemHandDroneLauncher extends Item {
             drone.accelerationY = look.yCoord * 0.01;
             drone.accelerationZ = look.zCoord * 0.01;
 			world.spawnEntityInWorld(drone);
-			tag.setBoolean("firstShoot", true);
-			tag.setInteger("shootTime", 128);
-			itemstack.damageItem(128, entity);
+            if (batery > 1) {
+                tag.setBoolean("firstShoot", true);
+                tag.setInteger("shootTime", 64);
+                itemstack.damageItem(64, entity);
+            }
             tag.setInteger("Battery", batery - 1);
 		}		
 		return itemstack;

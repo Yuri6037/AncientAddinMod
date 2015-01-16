@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
+import net.yuri6037.AncientAddinMod.entity.EntityAncientRayon;
 import net.yuri6037.AncientAddinMod.entity.EntityDrone;
 
 @SideOnly(Side.CLIENT)
@@ -22,5 +23,6 @@ public class RenderList {
 
     static {
         registerEntityRenderer(EntityDrone.class, RenderDrone.class);
+        registerEntityRenderer(EntityAncientRayon.class, RenderAncientRayon.class);
     }
 }

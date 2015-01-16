@@ -23,6 +23,9 @@ public class ModelDroneLauncher extends ModelBase {
     public boolean reloading = false;
 
     public ModelDroneLauncher() {
+        textureWidth = 64;
+        textureHeight = 32;
+
         /* Base */
         launcherBase = new ModelRenderer(this, 0, 0);
         launcherBase.addBox(-2F, -2F, 0F, 4, 4, 2);
@@ -183,7 +186,6 @@ public class ModelDroneLauncher extends ModelBase {
         float rotateX = (float) Math.toRadians(rotationX);
         float rotateY = (float) Math.toRadians(rotationY);
         float rotateZ = (float) Math.toRadians(rotationZ);
-        //(float) Math.toRadians(angleDeg)
         setRotation(launcherBase, rotateX, rotateY, rotateZ);
         setRotation(thrower, 0, 0, z);
     }

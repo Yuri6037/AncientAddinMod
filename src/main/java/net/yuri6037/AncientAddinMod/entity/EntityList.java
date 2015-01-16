@@ -9,11 +9,15 @@ import net.yuri6037.AncientAddinMod.AncientAddin;
  */
 public class EntityList {
 
+    private static int usingID = 128;
+
     private static void registerEntity(String id, Class<? extends Entity> entityClass){
-        EntityRegistry.registerModEntity(entityClass, "ancientAddin." + id, EntityRegistry.findGlobalUniqueEntityId(), AncientAddin.ancientAddin, 10, 1, true);
+        EntityRegistry.registerModEntity(entityClass, "ancientAddin." + id, usingID, AncientAddin.ancientAddin, 10, 1, true);
+        usingID++;
     }
 
     static {
+        registerEntity("ancientRayon", EntityAncientRayon.class);
         registerEntity("drone", EntityDrone.class);
     }
 }

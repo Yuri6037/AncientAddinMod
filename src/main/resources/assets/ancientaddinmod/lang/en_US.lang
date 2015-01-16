@@ -1,0 +1,31 @@
+item.droneLauncher.name=Drone Launcher
+item.droneRecharge.name=Drone Recharge
+item.personalShield.name=Personal Shield
+item.ancientGlasses.name=Glasses
+item.rayonThrower.name=Rayon Thrower
+item.battery.name=Battery
+
+item.HeavyArmor_0.name=Heavy Armor Helmet
+item.HeavyArmor_1.name=Heavy Armor Chestplate
+item.HeavyArmor_2.name=Heavy Armor Leggings
+item.HeavyArmor_3.name=Heavy Armor Boots
+
+tile.stazeModuleCore.name=Staze Module Core
+tile.itemDisassembler.name=Item Decompiler
+tile.blackDiamond.name=Black Diamond
+tile.batteryRecharger.name=Battery Recharger
+
+container.decompiler=Item Decompiler
+container.batteryRecharger=Battery Recharger
+
+itemGroup.ancient=Ancient's Stuff
+
+death.attack.ancientDamage=%s has been killed by an Ancient using %g
+entity.AncientAddin.ancientAddin.ancientRoyon.name=Ancient Rayon
+entity.AncientAddin.ancientAddin.drone.name=Drone
+
+key.ancientAddin.category=Ancient Addin
+key.ancientAddin.heavyHelmetZoom.desc=HeavyArmor - Zoom
+key.ancientAddin.heavyArmorPresurize.desc=HeavyArmor - Presurize
+key.ancientAddin.heavyArmorLigh.desc=HeavyArmor - Light
+key.ancientAddin.heavyArmorTotalScreen.desc=HeavyArmor - Total Screen

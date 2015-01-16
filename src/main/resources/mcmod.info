@@ -2,7 +2,7 @@
 {
   "modid": "AncientAddin",
   "name": "AncientAddin Mod",
-  "description": "Mod used by AncientSpaceShip MCPack",
+  "description": "Mod used by AncientSpaceShip MCPack.",
   "mcversion": "1.7.10",
   "url": "",
   "updateUrl": "",

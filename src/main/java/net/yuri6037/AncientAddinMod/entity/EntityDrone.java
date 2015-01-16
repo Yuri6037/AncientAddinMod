@@ -7,12 +7,14 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.yuri6037.AncientAddinMod.util.AnciantDamageSource;
+import net.yuri6037.AncientAddinMod.util.EntityFinder;
+import net.yuri6037.AncientAddinMod.enums.EntityType;
 
 import java.util.List;
 
@@ -82,12 +84,13 @@ public class EntityDrone extends Entity implements IThrowableEntity {
             this.worldObj.newExplosion(null, this.posX, this.posY, this.posZ, 2.0F, true, this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
             this.worldObj.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, Blocks.flowing_lava);
 
-            List l = worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX - 3, this.motionY - 3, this.motionZ - 3).expand(3.0D, 3.0D, 3.0D));
-            for (Object e : l){
+            List<Entity> l = EntityFinder.findEntitiesInRayon(EntityType.OBJECT, this, 10, false);
+            for (Entity e : l){
                 if (e instanceof EntityItem){
-                    ((EntityItem) e).setDead();
-                } else if (e instanceof EntityPlayer){
-                    ((EntityPlayer) e).attackEntityFrom(new EntityDamageSourceIndirect("AncientDamage", this, shootingEntity), 99F);
+                    e.setDead();
+                } else if (e instanceof EntityLivingBase){
+                    //e.attackEntityFrom(new EntityDamageSourceIndirect("AncientDamage", this, shootingEntity), 99F);
+                    AnciantDamageSource.causeAncientDamage((EntityLivingBase) e, this, 99F);
                 }
             }
 
